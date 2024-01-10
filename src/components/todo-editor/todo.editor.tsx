@@ -31,6 +31,7 @@ const TodoEditor: FC<EditorProps> = (props) => {
     handleSubmit,
     setValue,
     watch,
+    reset,
     formState: { errors }
   } = useForm<TaskDto>({resolver: yupResolver(taskValidationSchema)})
 
@@ -42,6 +43,7 @@ const TodoEditor: FC<EditorProps> = (props) => {
             description: data.description,
             status: data.status
         })
+        reset();
         onClose();
     } else {
       props.socket.emit('edit-todo', {
