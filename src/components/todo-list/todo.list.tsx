@@ -18,11 +18,12 @@ const TodoList = () => {
     const handleUpdate = useCallback((updateableTask: TaskDto) => {
         const tempArray = tasks.map((item) => {
             if(item.taskId === updateableTask.taskId) {
-                let updTsk: TaskDto = item;
-                updTsk.title = updateableTask.title;
-                updTsk.status = updateableTask.status;
-                updTsk.description = updateableTask.description;
-                return updTsk;
+                return {
+                    taskId: updateableTask.taskId,
+                    title: updateableTask.title,
+                    description: updateableTask.description,
+                    status: updateableTask.status,
+                }
             }
             return item;
         });
